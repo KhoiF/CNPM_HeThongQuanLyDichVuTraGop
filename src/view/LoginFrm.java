@@ -39,7 +39,6 @@ public class LoginFrm extends javax.swing.JFrame {
         lblUsername.setText("Username:");
 
         txtUsername.setColumns(24);
-        txtUsername.addActionListener(this::txtUsernameActionPerformed);
 
         lblPassword.setText("Password:");
 
@@ -89,10 +88,6 @@ public class LoginFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        txtPassword.requestFocus();
-    }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         doLogin();

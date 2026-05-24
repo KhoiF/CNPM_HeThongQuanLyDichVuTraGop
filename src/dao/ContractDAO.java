@@ -37,6 +37,7 @@ public class ContractDAO extends DAO {
                 SELECT c.id AS contractId, c.signDate, c.loanTerm,
                        cl.id AS clientId, cl.idCard, cl.fullName AS clientName, cl.tel, cl.address AS clientAddress, cl.email AS clientEmail,
                        u.id AS userId, u.fullName AS userName, u.username, u.password, u.position,
+                       u.tel AS userTel, u.email AS userEmail, u.address AS userAddress,
                        p.id AS partnerId, p.partnerName, p.phoneNumber, p.address AS partnerAddress, p.email AS partnerEmail,
                        p.bankName, p.accountNumber, p.description AS partnerDescription
                 FROM tblContract c
@@ -70,9 +71,11 @@ public class ContractDAO extends DAO {
                         rs.getString("userName"),
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getString("position")
+                        rs.getString("position"),
+                        getOptionalString(rs, "userTel"),
+                        getOptionalString(rs, "userEmail"),
+                        getOptionalString(rs, "userAddress")
                 ));
-                loadUserContact(contract.getUser());
                 contract.setPartner(new Partner(
                         rs.getInt("partnerId"),
                         rs.getString("partnerName"),
@@ -92,24 +95,6 @@ public class ContractDAO extends DAO {
             e.printStackTrace();
         }
         return null;
-    }
-
-    private void loadUserContact(User user) throws Exception {
-        if (user == null) {
-            return;
-        }
-
-        String sql = "SELECT * FROM tblUser WHERE id = ?";
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, user.getId());
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    user.setTel(getOptionalString(rs, "tel"));
-                    user.setEmail(getOptionalString(rs, "email"));
-                    user.setAddress(getOptionalString(rs, "address"));
-                }
-            }
-        }
     }
 
     private void loadBoughtItems(Contract contract) throws Exception {
