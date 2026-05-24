@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package view;
 
 import dao.UserDAO;
@@ -5,6 +9,10 @@ import model.User;
 
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author Admin
+ */
 public class LoginFrm extends javax.swing.JFrame {
 
     public LoginFrm() {
@@ -32,13 +40,14 @@ public class LoginFrm extends javax.swing.JFrame {
         setTitle("Đăng nhập");
         setResizable(false);
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 18));
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("HỆ THỐNG QUẢN LÝ DỊCH VỤ TRẢ GÓP");
 
         lblUsername.setText("Username:");
 
         txtUsername.setColumns(24);
+        txtUsername.addActionListener(this::txtUsernameActionPerformed);
 
         lblPassword.setText("Password:");
 
@@ -62,7 +71,7 @@ public class LoginFrm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(24, 24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogin)
@@ -96,6 +105,10 @@ public class LoginFrm extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         doLogin();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void doLogin() {
         User user = new User();

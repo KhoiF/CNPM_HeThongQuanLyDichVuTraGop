@@ -1,8 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ *
+ * @author Admin
+ */
 public class PaymentPeriod implements Serializable {
     private static final String PAID_STATUS = "\u0110\u00e3 thanh to\u00e1n";
     private static final String UNPAID_STATUS = "Ch\u01b0a thanh to\u00e1n";

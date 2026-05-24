@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dao;
 
 import model.Bill;
@@ -11,6 +15,10 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Admin
+ */
 public class BillDAO extends DAO {
     public BillDAO() {
         super();

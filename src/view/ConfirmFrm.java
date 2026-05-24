@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package view;
 
 import dao.BillDAO;
@@ -12,6 +16,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
 
+/**
+ *
+ * @author Admin
+ */
 public class ConfirmFrm extends javax.swing.JFrame {
 
     private ContractFrm contractFrm;

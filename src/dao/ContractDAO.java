@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package dao;
 
 import model.BoughtItem;
@@ -18,6 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author Admin
+ */
 public class ContractDAO extends DAO {
     // Lai qua han tinh theo ngay: 0.001 = 0.1%/ngay.
     private static final double OVERDUE_INTEREST_RATE = 0.001;

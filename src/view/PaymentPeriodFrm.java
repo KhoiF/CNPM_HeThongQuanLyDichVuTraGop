@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package view;
 
 import dao.BillDAO;
@@ -9,6 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Admin
+ */
 public class PaymentPeriodFrm extends javax.swing.JFrame {
 
     private Bill bill;

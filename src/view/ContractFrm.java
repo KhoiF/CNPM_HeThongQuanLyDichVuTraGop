@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package view;
 
 import model.Bill;
@@ -9,6 +13,10 @@ import model.Partner;
 import model.PaymentPeriod;
 import model.User;
 
+/**
+ *
+ * @author Admin
+ */
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
