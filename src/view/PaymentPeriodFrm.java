@@ -228,7 +228,7 @@ public class PaymentPeriodFrm extends javax.swing.JFrame {
         }
 
         setTitle("Thanh toán đợt " + period.getPeriod());
-        lblPaymentPeriodInfo.setText("Mã đợt " + nullToBlank(period.getId()) + " - Đợt " + period.getPeriod());
+        lblPaymentPeriodInfo.setText("Mã đợt " + ViewUtils.blank(period.getId()) + " - Đợt " + period.getPeriod());
         lblDueDate.setText(ViewUtils.formatDate(period.getDueDate()));
         lblPayableAmount.setText(ViewUtils.formatMoney(period.getPayableAmount()));
         lblPaidAmount.setText(ViewUtils.formatMoney(period.getPaidAmount()));
@@ -294,10 +294,6 @@ public class PaymentPeriodFrm extends javax.swing.JFrame {
             contractFrm.reloadData();
         }
         dispose();
-    }
-
-    private String nullToBlank(String value) {
-        return value == null ? "" : value;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

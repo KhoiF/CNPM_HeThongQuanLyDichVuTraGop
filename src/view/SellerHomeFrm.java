@@ -136,15 +136,11 @@ public class SellerHomeFrm extends javax.swing.JFrame {
         }
 
         lblUserId.setText(String.valueOf(user.getId()));
-        lblFullName.setText(nullToBlank(user.getFullName()));
-        lblAddress.setText(nullToBlank(user.getAddress()));
-        lblPhone.setText(nullToBlank(user.getTel()));
-        lblEmail.setText(nullToBlank(user.getEmail()));
-        lblPosition.setText(nullToBlank(user.getPosition()));
-    }
-
-    private String nullToBlank(String value) {
-        return value == null ? "" : value;
+        lblFullName.setText(ViewUtils.blank(user.getFullName()));
+        lblAddress.setText(ViewUtils.blank(user.getAddress()));
+        lblPhone.setText(ViewUtils.blank(user.getTel()));
+        lblEmail.setText(ViewUtils.blank(user.getEmail()));
+        lblPosition.setText(ViewUtils.blank(user.getPosition()));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

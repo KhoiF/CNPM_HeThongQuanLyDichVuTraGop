@@ -15,6 +15,10 @@ final class ViewUtils {
         return date == null ? "" : date.format(DATE_FORMATTER);
     }
 
+    static String blank(String value) {
+        return value == null ? "" : value;
+    }
+
     static String formatMoney(double value) {
         return MONEY_FORMATTER.format(value) + " VND";
     }

@@ -17,10 +17,9 @@ public class DAO {
             return;
         }
 
-        String dbUrl = getConfig("db.url", "DB_URL",
-                "jdbc:mysql://localhost:3306/db_installment_payment?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Ho_Chi_Minh");
-        String dbUsername = getConfig("db.user", "DB_USER", "root");
-        String dbPassword = getConfig("db.password", "DB_PASSWORD", "123456");
+        String dbUrl = "jdbc:mysql://localhost:3306/db_installment_payment?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Ho_Chi_Minh";
+        String dbUsername = "root";
+        String dbPassword = "123456";
         String dbClass = "com.mysql.cj.jdbc.Driver";
 
         try {
@@ -43,14 +42,5 @@ public class DAO {
         } catch (SQLException ex) {
             return "";
         }
-    }
-
-    private String getConfig(String propertyName, String envName, String defaultValue) {
-        String value = System.getProperty(propertyName);
-        if (value != null) {
-            return value;
-        }
-        value = System.getenv(envName);
-        return value == null || value.isBlank() ? defaultValue : value;
     }
 }

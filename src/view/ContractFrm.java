@@ -29,7 +29,7 @@ public class ContractFrm extends javax.swing.JFrame {
         initComponents();
         configureTables();
         reloadData();
-        setTitle("Thông tin hợp đồng " + nullToBlank(contract.getId()));
+        setTitle("Thông tin hợp đồng " + ViewUtils.blank(contract.getId()));
         setSize(1100, 720);
         setLocationRelativeTo(null);
     }
@@ -375,24 +375,24 @@ public class ContractFrm extends javax.swing.JFrame {
 
     private void loadContractHeader() {
         Client client = contract.getClient();
-        lblClientFullName.setText(client == null ? "" : nullToBlank(client.getFullName()));
-        lblClientIdCard.setText(client == null ? "" : nullToBlank(client.getIdCard()));
-        lblClientPhone.setText(client == null ? "" : nullToBlank(client.getTel()));
-        lblClientAddress.setText(client == null ? "" : nullToBlank(client.getAddress()));
-        lblClientEmail.setText(client == null ? "" : nullToBlank(client.getEmail()));
+        lblClientFullName.setText(client == null ? "" : ViewUtils.blank(client.getFullName()));
+        lblClientIdCard.setText(client == null ? "" : ViewUtils.blank(client.getIdCard()));
+        lblClientPhone.setText(client == null ? "" : ViewUtils.blank(client.getTel()));
+        lblClientAddress.setText(client == null ? "" : ViewUtils.blank(client.getAddress()));
+        lblClientEmail.setText(client == null ? "" : ViewUtils.blank(client.getEmail()));
 
         User contractUser = contract.getUser();
-        lblContractUserName.setText(contractUser == null ? "" : nullToBlank(contractUser.getFullName()));
+        lblContractUserName.setText(contractUser == null ? "" : ViewUtils.blank(contractUser.getFullName()));
         lblContractUserId.setText(contractUser == null ? "" : String.valueOf(contractUser.getId()));
-        lblContractUserPhone.setText(contractUser == null ? "" : nullToBlank(contractUser.getTel()));
-        lblContractUserEmail.setText(contractUser == null ? "" : nullToBlank(contractUser.getEmail()));
-        lblContractUserAddress.setText(contractUser == null ? "" : nullToBlank(contractUser.getAddress()));
+        lblContractUserPhone.setText(contractUser == null ? "" : ViewUtils.blank(contractUser.getTel()));
+        lblContractUserEmail.setText(contractUser == null ? "" : ViewUtils.blank(contractUser.getEmail()));
+        lblContractUserAddress.setText(contractUser == null ? "" : ViewUtils.blank(contractUser.getAddress()));
 
         Partner partner = contract.getPartner();
-        lblPartnerName.setText(partner == null ? "" : nullToBlank(partner.getPartnerName()));
-        lblPartnerPhone.setText(partner == null ? "" : nullToBlank(partner.getPhoneNumber()));
-        lblPartnerAddress.setText(partner == null ? "" : nullToBlank(partner.getAddress()));
-        lblPartnerEmail.setText(partner == null ? "" : nullToBlank(partner.getEmail()));
+        lblPartnerName.setText(partner == null ? "" : ViewUtils.blank(partner.getPartnerName()));
+        lblPartnerPhone.setText(partner == null ? "" : ViewUtils.blank(partner.getPhoneNumber()));
+        lblPartnerAddress.setText(partner == null ? "" : ViewUtils.blank(partner.getAddress()));
+        lblPartnerEmail.setText(partner == null ? "" : ViewUtils.blank(partner.getEmail()));
     }
 
     private void reloadItems() {
@@ -456,10 +456,6 @@ public class ContractFrm extends javax.swing.JFrame {
             return;
         }
         new ConfirmFrm(this, contract, bill).setVisible(true);
-    }
-
-    private String nullToBlank(String value) {
-        return value == null ? "" : value;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

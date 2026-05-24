@@ -294,7 +294,6 @@ public class ConfirmFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtPaymentTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaymentTypeActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtPaymentTypeActionPerformed
 
     private void configureTable() {
@@ -306,23 +305,23 @@ public class ConfirmFrm extends javax.swing.JFrame {
             return;
         }
 
-        lblContractInfo.setText("Hợp đồng " + nullToBlank(contract.getId()));
+        lblContractInfo.setText("Hợp đồng " + ViewUtils.blank(contract.getId()));
         Client client = contract.getClient();
         Partner partner = contract.getPartner();
-        lblClientName.setText(client == null ? "" : nullToBlank(client.getFullName()));
-        lblClientPhone.setText(client == null ? "" : nullToBlank(client.getTel()));
-        lblClientAddress.setText(client == null ? "" : nullToBlank(client.getAddress()));
-        lblClientEmail.setText(client == null ? "" : nullToBlank(client.getEmail()));
-        lblPartnerName.setText(partner == null ? "" : nullToBlank(partner.getPartnerName()));
+        lblClientName.setText(client == null ? "" : ViewUtils.blank(client.getFullName()));
+        lblClientPhone.setText(client == null ? "" : ViewUtils.blank(client.getTel()));
+        lblClientAddress.setText(client == null ? "" : ViewUtils.blank(client.getAddress()));
+        lblClientEmail.setText(client == null ? "" : ViewUtils.blank(client.getEmail()));
+        lblPartnerName.setText(partner == null ? "" : ViewUtils.blank(partner.getPartnerName()));
 
-        lblContractId.setText(nullToBlank(contract.getId()));
+        lblContractId.setText(ViewUtils.blank(contract.getId()));
         lblSignDate.setText(ViewUtils.formatDate(contract.getSignDate()));
         lblLoanTerm.setText(contract.getLoanTerm() + " tháng");
         lblTotalAmount.setText(ViewUtils.formatMoney(contract.getTotalAmount()));
         lblRemainingDebt.setText(ViewUtils.formatMoney(contract.getTotalRemainingDebt()));
 
         User user = bill.getUser();
-        lblCreator.setText(user == null ? "" : nullToBlank(user.getFullName()));
+        lblCreator.setText(user == null ? "" : ViewUtils.blank(user.getFullName()));
         lblPaymentDate.setText(ViewUtils.formatDate(LocalDate.now()));
         lblPaymentAmount.setText(ViewUtils.formatMoney(bill.getPaymentAmount()));
 
@@ -382,10 +381,6 @@ public class ConfirmFrm extends javax.swing.JFrame {
             Object noteValue = tableModel.getValueAt(row, 4);
             bill.getPaymentDetails().get(row).setNote(noteValue == null ? "" : noteValue.toString().trim());
         }
-    }
-
-    private String nullToBlank(String value) {
-        return value == null ? "" : value;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
