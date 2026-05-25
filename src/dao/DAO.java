@@ -40,10 +40,6 @@ public class DAO {
         }
     }
 
-    protected boolean hasConnection() {
-        return con != null;
-    }
-
     protected String getOptionalString(ResultSet rs, String columnName) throws SQLException {
         try {
             return rs.getString(columnName);

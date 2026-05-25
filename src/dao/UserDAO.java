@@ -19,10 +19,6 @@ public class UserDAO extends DAO {
     }
 
     public boolean checkLogin(User user) {
-        if (!hasConnection()) {
-            return false;
-        }
-
         String sql = "SELECT * FROM tblUser WHERE username = ? AND password = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, user.getUsername());

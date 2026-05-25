@@ -37,10 +37,6 @@ public class ContractDAO extends DAO {
     }
 
     public Contract searchContract(String contractId) {
-        if (!hasConnection()) {
-            return null;
-        }
-
         String sql = """
                 SELECT c.id AS contractId, c.signDate, c.loanTerm,
                        cl.id AS clientId, cl.idCard, cl.fullName AS clientName, cl.tel, cl.address AS clientAddress, cl.email AS clientEmail,
@@ -251,7 +247,7 @@ public class ContractDAO extends DAO {
                 }
             }
 
-            double remainingPayment = paymentAmount;
+            double remainingPayment = paymentAmount;// luu toan bo tien thanh toan
             // Tien tra sau han duoc uu tien tru lai truoc, phan con lai moi tru goc.
             if (isAfterDueDate(dueDate, paymentDate)) {
                 double interestPayment = Math.min(unpaidInterest, remainingPayment);
@@ -306,7 +302,7 @@ public class ContractDAO extends DAO {
     private static class PaymentHistory {
         private final int id;
         private final double allocatedAmount;
-        private final LocalDate paymentDate;
+        private final LocalDate paymentDate;            
 
         private PaymentHistory(int id, double allocatedAmount, LocalDate paymentDate) {
             this.id = id;

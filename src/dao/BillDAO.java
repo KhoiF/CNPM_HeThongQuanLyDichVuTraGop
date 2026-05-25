@@ -25,7 +25,7 @@ public class BillDAO extends DAO {
     }
 
     public boolean addBill(Bill bill) {
-        if (!hasConnection() || bill == null || bill.getPaymentDetails().isEmpty()) {
+        if (bill == null || bill.getPaymentDetails().isEmpty()) {
             return false;
         }
         if (bill.getPaymentDate() == null) {
@@ -88,7 +88,7 @@ public class BillDAO extends DAO {
 
     public ArrayList<PaymentDetail> searchPaymentDetailInBill(PaymentPeriod period) {
         ArrayList<PaymentDetail> details = new ArrayList<>();
-        if (!hasConnection() || period == null || period.getId() == null) {
+        if (period == null || period.getId() == null) {
             return details;
         }
 
