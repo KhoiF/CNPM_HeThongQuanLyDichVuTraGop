@@ -216,14 +216,13 @@ public class ContractDAO extends DAO {
             LocalDate asOfDate
     ) {
         // principalRemaining: tien goc con lai cua dot.
-        // unpaidInterest: tien lai qua han da phat sinh nhung chua duoc tra.
-        // interestStartDate: moc gan nhat da tinh lai, dung de tranh cong lai lap.
+        // overdueInterest: tien lai qua han tinh tren tien goc con lai.
         double principalRemaining = Math.max(0, payableAmount);
-        double unpaidInterest = 0;
+        double overdueInterest = 0;
         double totalPaid = 0;
-        LocalDate interestStartDate = dueDate;
 
-        // Xu ly thanh toan theo dung thu tu thoi gian de tinh lai theo tung khoang ngay.
+        // DB khong luu dueDate tai thoi diem thanh toan, nen tien da tra duoc tru vao goc truoc.
+        // Cach nay giu dung du no goc con lai khi dueDate bi sua truc tiep trong MySQL.
         List<PaymentHistory> histories = paymentHistory == null ? new ArrayList<>() : new ArrayList<>(paymentHistory);
         histories.sort(ContractDAO::comparePaymentHistory);
 
@@ -238,41 +237,21 @@ public class ContractDAO extends DAO {
                 continue;
             }
 
-            // Neu thanh toan sau han, cong lai tu moc tinh lai gan nhat den ngay thanh toan.
-            if (isAfterDueDate(dueDate, paymentDate) && principalRemaining > 0) {
-                if (interestStartDate != null && paymentDate.isAfter(interestStartDate)) {
-                    long lateDays = ChronoUnit.DAYS.between(interestStartDate, paymentDate);
-                    unpaidInterest += principalRemaining * OVERDUE_INTEREST_RATE * lateDays;
-                    interestStartDate = paymentDate;
-                }
-            }
-
-            double remainingPayment = paymentAmount;// luu toan bo tien thanh toan
-            // Tien tra sau han duoc uu tien tru lai truoc, phan con lai moi tru goc.
-            if (isAfterDueDate(dueDate, paymentDate)) {
-                double interestPayment = Math.min(unpaidInterest, remainingPayment);
-                unpaidInterest -= interestPayment;
-                remainingPayment -= interestPayment;
-            }
-
-            double principalPayment = Math.min(principalRemaining, remainingPayment);
+            double principalPayment = Math.min(principalRemaining, paymentAmount);
             principalRemaining -= principalPayment;
             totalPaid += paymentAmount;
         }
 
-        // Sau lan thanh toan cuoi, neu van con goc thi tiep tuc cong lai den ngay hien tai.
+        // Neu qua han va van con goc, tinh lai tren phan goc con lai theo dueDate hien tai trong DB.
         if (dueDate != null && asOfDate != null && asOfDate.isAfter(dueDate) && principalRemaining > 0) {
-            LocalDate accrualStartDate = interestStartDate == null ? dueDate : interestStartDate;
-            if (asOfDate.isAfter(accrualStartDate)) {
-                long lateDays = ChronoUnit.DAYS.between(accrualStartDate, asOfDate);
-                unpaidInterest += principalRemaining * OVERDUE_INTEREST_RATE * lateDays;
-            }
+            long lateDays = ChronoUnit.DAYS.between(dueDate, asOfDate);
+            overdueInterest = principalRemaining * OVERDUE_INTEREST_RATE * lateDays;
         }
 
         return new PeriodBalance(
                 totalPaid,
-                Math.max(0, unpaidInterest),
-                Math.max(0, principalRemaining + unpaidInterest)
+                Math.max(0, overdueInterest),
+                Math.max(0, principalRemaining + overdueInterest)
         );
     }
 
